@@ -257,7 +257,12 @@ local function text(x, y, textColor, data, transparency)
 					newFrameForegrounds[bufferIndex] = textColor
 				end
 
-				newFrameSymbols[bufferIndex] = unicodeSub(data, charIndex, charIndex)
+				local temp = unicodeSub(data, charIndex, charIndex)
+				if temp ~="\0" then
+					newFrameSymbols[bufferIndex] = temp
+				else
+					newFrameSymbols[bufferIndex] = ""
+				end
 			end
 
 			x, bufferIndex = x + 1, bufferIndex + 1
